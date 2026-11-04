@@ -1,0 +1,35 @@
+{
+  "name": "vaultwarden.avado.dnp.dappnode.eth",
+  "version": "0.1.0",
+  "upstream": "1.37.5",
+  "title": "Vaultwarden (passwords)",
+  "shortDescription": "Your own password manager for the whole family, kept on your AVADO",
+  "description": "Your own password manager, kept on your AVADO instead of in someone else's cloud. It works with the free Bitwarden apps for phone and computer and with the Bitwarden browser extension. Getting started: open Vaultwarden, choose \"Create account\" and pick a strong master password. Write the master password down and keep it safe: nobody, not even AVADO, can recover it. Then, in the Bitwarden app, choose \"Self-hosted\" and enter https://vaultwarden.my.ava.do as the server address. Any phone or computer that can open my.ava.do (at home on the AVADO network, or away through Remote Access) can use it. Once everyone in your family has an account, you can stop new sign-ups: in this app's Settings set SIGNUPS_ALLOWED to false and restart the app. It uses very little memory and processor time.",
+  "type": "service",
+  "autoupdate": true,
+  "image": {
+    "volumes": [
+      "data:/data",
+      "/etc/localtime:/etc/localtime:ro"
+    ],
+    "ports": [],
+    "environment": [
+      "SIGNUPS_ALLOWED=true"
+    ],
+    "restart": "always"
+  },
+  "author": "AVADO",
+  "license": "GPL-3.0",
+  "dependencies": {},
+  "links": {
+    "Open Vaultwarden": "https://vaultwarden.my.ava.do",
+    "Bitwarden apps": "https://bitwarden.com/download/",
+    "Vaultwarden project": "https://github.com/dani-garcia/vaultwarden"
+  },
+  "ui": {
+    "OnboardingWizard": {
+      "url": "https://vaultwarden.my.ava.do",
+      "external": true
+    }
+  }
+}
