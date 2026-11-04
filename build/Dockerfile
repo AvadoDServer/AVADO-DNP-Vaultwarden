@@ -1,7 +1,7 @@
 # Vaultwarden 1.37.5 (Alpine), the official image, pinned by digest.
 FROM --platform=linux/amd64 vaultwarden/server:1.37.5-alpine@sha256:bbe684a02d6b0db54256ff88eac9754f4519284a7b26314afc241fd7d0918191
 
-RUN apk add --no-cache nginx openssl
+RUN apk add --no-cache nginx openssl sqlite
 
 # HTTPS front: the *.my.ava.do certificate, refreshed at start from the box.
 RUN mkdir -p /etc/avado/certs \

@@ -39,6 +39,24 @@ http {
   server {
     listen 443 ssl default_server;
     client_max_body_size 525m;
+
+    # The admin page is only switched on (with a random token) until the first
+    # account exists, to close new sign-ups after it; it is never reachable
+    # from outside this container.
+    location ^~ /admin {
+      return 404;
+    }
+
+    # While Vaultwarden starts (a few seconds, longer after an update): a
+    # plain "starting" page that reloads itself instead of "502 Bad Gateway".
+    error_page 502 = @starting;
+    location @starting {
+      default_type text/html;
+      add_header Cache-Control "no-store" always;
+      add_header Retry-After 10 always;
+      return 503 '<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta http-equiv="refresh" content="10"><title>Vaultwarden is starting</title></head><body style="font-family:system-ui,sans-serif;max-width:32rem;margin:15vh auto;padding:0 16px;text-align:center;color:#175ddc"><h1 style="font-size:1.5rem">Vaultwarden is starting</h1><p>This takes a few seconds, a little longer after an update. This page opens Vaultwarden by itself when it is ready.</p></body></html>';
+    }
+
     location / {
       proxy_pass http://127.0.0.1:8080;
       proxy_http_version 1.1;

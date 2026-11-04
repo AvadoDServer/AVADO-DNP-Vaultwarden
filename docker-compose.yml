@@ -7,8 +7,6 @@ services:
     volumes:
       - 'data:/data'
       - '/etc/localtime:/etc/localtime:ro'
-    environment:
-      - SIGNUPS_ALLOWED=true
     restart: always
 volumes:
   data: {}

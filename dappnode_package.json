@@ -4,7 +4,7 @@
   "upstream": "1.37.5",
   "title": "Vaultwarden (passwords)",
   "shortDescription": "Your own password manager for the whole family, kept on your AVADO",
-  "description": "Your own password manager, kept on your AVADO instead of in someone else's cloud. It works with the free Bitwarden apps for phone and computer and with the Bitwarden browser extension. Getting started: open Vaultwarden, choose \"Create account\" and pick a strong master password. Write the master password down and keep it safe: nobody, not even AVADO, can recover it. Then, in the Bitwarden app, choose \"Self-hosted\" and enter https://vaultwarden.my.ava.do as the server address. Any phone or computer that can open my.ava.do (at home on the AVADO network, or away through Remote Access) can use it. Once everyone in your family has an account, stop new sign-ups: click the link \"Stop new sign-ups\" below, change SIGNUPS_ALLOWED from true to false and press \"Update environment variables\" (the app restarts by itself, your passwords stay). It uses very little memory and processor time.",
+  "description": "Your own password manager, kept on your AVADO instead of in someone else's cloud. It works with the free Bitwarden apps and browser extension. Getting started: open Vaultwarden and choose \"Create account\". This first account is yours. Pick a strong master password and write it down: nobody, not even AVADO, can recover it. After this first account, nobody can sign up on their own. To add family members: in Vaultwarden choose \"New organization\" (for example \"Family\"), then \"Invite member\" and enter their e-mail address. They open Vaultwarden and choose \"Create account\" with that address. Then you open the menu next to their name and choose \"Confirm\". No e-mail is sent, so tell them yourself. In the Bitwarden app choose \"Self-hosted\" and enter https://vaultwarden.my.ava.do.",
   "type": "service",
   "autoupdate": true,
   "image": {
@@ -13,9 +13,6 @@
       "/etc/localtime:/etc/localtime:ro"
     ],
     "ports": [],
-    "environment": [
-      "SIGNUPS_ALLOWED=true"
-    ],
     "restart": "always"
   },
   "author": "AVADO",
@@ -23,7 +20,6 @@
   "dependencies": {},
   "links": {
     "Open Vaultwarden": "https://vaultwarden.my.ava.do",
-    "Stop new sign-ups": "http://my.ava.do/#/packages/vaultwarden.avado.dnp.dappnode.eth?tab=settings",
     "Bitwarden apps": "https://bitwarden.com/download/",
     "Vaultwarden project": "https://github.com/dani-garcia/vaultwarden"
   },
