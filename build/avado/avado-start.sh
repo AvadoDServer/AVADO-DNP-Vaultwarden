@@ -41,9 +41,10 @@ sed "s/__NGINX_USER__/$NGINX_USER/" /etc/avado/nginx.conf.in > /etc/avado/nginx.
   done
 ) &
 
-# App-specific preparation (first-run settings, helper services).
-if [ -x /etc/avado/app-prestart.sh ]; then
-  /etc/avado/app-prestart.sh || echo "[avado] app preparation reported a problem (see above)" >&2
+# App-specific preparation (first-run settings, helper services, settings
+# taken from the box). Sourced, so it can export settings for the app.
+if [ -f /etc/avado/app-prestart.sh ]; then
+  . /etc/avado/app-prestart.sh
 fi
 
 exec nice -n "${AVADO_APP_NICE:-10}" "$@"
