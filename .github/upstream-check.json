@@ -1,0 +1,40 @@
+{
+  "title": "Vaultwarden",
+  "components": [
+    {
+      "name": "Vaultwarden",
+      "github": "dani-garcia/vaultwarden",
+      "images": [
+        {
+          "var": "vw",
+          "ref": "vaultwarden/server:{version}-alpine"
+        }
+      ],
+      "pins": [
+        {
+          "file": "build/Dockerfile",
+          "text": "vaultwarden/server:{version}-alpine@sha256:{vw}"
+        },
+        {
+          "file": "build/Dockerfile",
+          "text": "# Vaultwarden {version} (Alpine)",
+          "optional": true
+        },
+        {
+          "file": "dappnode_package.json",
+          "text": "\"upstream\": \"{version}\""
+        },
+        {
+          "file": "README.md",
+          "text": "(https://github.com/dani-garcia/vaultwarden)\n{version}, a",
+          "optional": true
+        },
+        {
+          "file": "README.md",
+          "text": "`vaultwarden/server:{version}-alpine`",
+          "optional": true
+        }
+      ]
+    }
+  ]
+}
