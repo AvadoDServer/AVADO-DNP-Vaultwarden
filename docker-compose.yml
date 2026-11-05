@@ -1,0 +1,12 @@
+version: '3.4'
+services:
+  vaultwarden.avado.dnp.dappnode.eth:
+    image: 'vaultwarden.avado.dnp.dappnode.eth:0.1.0'
+    build:
+      context: ./build
+    volumes:
+      - 'data:/data'
+      - '/etc/localtime:/etc/localtime:ro'
+    restart: always
+volumes:
+  data: {}
